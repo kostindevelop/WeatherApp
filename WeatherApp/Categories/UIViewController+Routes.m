@@ -13,7 +13,7 @@
 
 - (void)presentDetailControllerAnimated:(BOOL)animated {
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    DetailWeatherViewController *detailController = [main instantiateViewControllerWithIdentifier:@"detaiControllerIdentifier"];
+    DetailWeatherViewController *detailController = [main instantiateViewControllerWithIdentifier:@"detailControllerIdentifier"];
     [self presentViewController:detailController animated:animated completion:nil];
 }
 

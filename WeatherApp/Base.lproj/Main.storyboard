@@ -12,7 +12,7 @@
         <!--Detail Weather View Controller-->
         <scene sceneID="Py6-JC-E5A">
             <objects>
-                <viewController storyboardIdentifier="detaiControllerIdentifier" id="647-pY-JOT" customClass="DetailWeatherViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailControllerIdentifier" id="647-pY-JOT" customClass="DetailWeatherViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VBC-PZ-9px">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -77,9 +77,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Enter city" translatesAutoresizingMaskIntoConstraints="NO" id="Mf2-jJ-at8">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Enter city" translatesAutoresizingMaskIntoConstraints="NO" id="Mf2-jJ-at8">
                                 <rect key="frame" x="10" y="293" width="355" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="address-level2"/>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9b-fN-1f6">
                                 <rect key="frame" x="44" y="120" width="287" height="72"/>
@@ -112,6 +112,9 @@
                         <viewLayoutGuide key="safeArea" id="FVu-rg-AKS"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="E19-gL-JDx"/>
+                    <connections>
+                        <outlet property="searchBar" destination="Mf2-jJ-at8" id="iGd-hf-6ue"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ndY-H0-URi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

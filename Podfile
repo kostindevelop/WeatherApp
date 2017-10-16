@@ -9,5 +9,6 @@ target 'WeatherApp' do
   pod 'AFNetworking', '~> 3.1'
   pod 'MagicalRecord', '~> 2.3'
   pod 'SDWebImage', '~> 4.1'
+  pod 'MBProgressHUD', '~> 1.0'
   
 end

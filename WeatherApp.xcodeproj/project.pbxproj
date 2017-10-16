@@ -18,6 +18,7 @@
 		B5D814771F916D5B00529249 /* FavouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D814761F916D5B00529249 /* FavouritesViewController.m */; };
 		B5D8147B1F916DF800529249 /* DetailWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D8147A1F916DF800529249 /* DetailWeatherViewController.m */; };
 		B5D8147F1F9178B600529249 /* UIViewController+Routes.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D8147E1F9178B600529249 /* UIViewController+Routes.m */; };
+		B5D814831F954DFA00529249 /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D814821F954DFA00529249 /* APIClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		B5D8147A1F916DF800529249 /* DetailWeatherViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailWeatherViewController.m; sourceTree = "<group>"; };
 		B5D8147D1F9178B600529249 /* UIViewController+Routes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Routes.h"; sourceTree = "<group>"; };
 		B5D8147E1F9178B600529249 /* UIViewController+Routes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Routes.m"; sourceTree = "<group>"; };
+		B5D814811F954DFA00529249 /* APIClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
+		B5D814821F954DFA00529249 /* APIClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		C303186BEB9EEE7B92196A18 /* Pods-WeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherApp/Pods-WeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +88,7 @@
 		B5D814551F91689900529249 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				B5D814801F954DBB00529249 /* APIClient */,
 				B5D8147C1F91776900529249 /* Categories */,
 				B5D8146F1F916CBD00529249 /* Controllers */,
 				B5D814561F91689900529249 /* AppDelegate.h */,
@@ -143,6 +147,15 @@
 				B5D8147E1F9178B600529249 /* UIViewController+Routes.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		B5D814801F954DBB00529249 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				B5D814811F954DFA00529249 /* APIClient.h */,
+				B5D814821F954DFA00529249 /* APIClient.m */,
+			);
+			path = APIClient;
 			sourceTree = "<group>";
 		};
 		D3F0BA2F4142D8F891E572B7 /* Frameworks */ = {
@@ -285,6 +298,7 @@
 				B5D814741F916D2F00529249 /* SearchViewController.m in Sources */,
 				B5D8147B1F916DF800529249 /* DetailWeatherViewController.m in Sources */,
 				B5D814581F91689A00529249 /* AppDelegate.m in Sources */,
+				B5D814831F954DFA00529249 /* APIClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

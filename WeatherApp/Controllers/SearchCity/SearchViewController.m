@@ -8,8 +8,12 @@
 
 #import "SearchViewController.h"
 #import "UIViewController+Routes.h"
+#import "APIClient.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
-@interface SearchViewController ()
+@interface SearchViewController () <UISearchBarDelegate, APIClientDelegate>
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) APIClient *apiClient;
 
 @end
 
@@ -18,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupViews];
+    
+    
 }
 
 - (IBAction)showDetailController:(UIButton *)sender {
@@ -30,6 +36,28 @@
     gradient.colors = @[(id)[UIColor whiteColor].CGColor, (id)[UIColor blueColor].CGColor];
     gradient.locations = @[[NSNumber numberWithInt:0.0], [NSNumber numberWithInt:1.0]];
     [self.view.layer insertSublayer:gradient atIndex:0];
+    
+    self.searchBar.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.searchBar.layer.borderWidth = 3;
+    self.searchBar.layer.cornerRadius = 20;
+    self.searchBar.delegate = self;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.apiClient = [APIClient new];
+    self.apiClient.delegate = self;
+    [self.apiClient searchWithCityName:searchBar.text];
+    [self.searchBar resignFirstResponder];
+}
+
+- (void)didRecieveResponseWithResult:(id)result error:(NSError *)error {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    if (error) {
+        // TODO:
+    } else {
+        // TODO:
+    }
 }
 
 @end
