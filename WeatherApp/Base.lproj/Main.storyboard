@@ -41,7 +41,7 @@
             </objects>
             <point key="canvasLocation" x="-392.80000000000001" y="858.62068965517244"/>
         </scene>
-        <!--Favourites-->
+        <!--Favourites View Controller-->
         <scene sceneID="WKW-Cx-u53">
             <objects>
                 <viewController id="fQs-qP-fU0" customClass="FavouritesViewController" sceneMemberID="viewController">
@@ -63,13 +63,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fvS-xQ-6n5"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favourites" id="WyD-2A-wAS"/>
+                    <tabBarItem key="tabBarItem" title="" systemItem="favorites" id="WyD-2A-wAS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fkl-0G-oMQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="559" y="481"/>
         </scene>
-        <!--Weather-->
+        <!--Search View Controller-->
         <scene sceneID="TUW-Qv-sv2">
             <objects>
                 <viewController id="Vk0-MD-j9P" customClass="SearchViewController" sceneMemberID="viewController">
@@ -100,7 +100,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Mf2-jJ-at8" firstAttribute="leading" secondItem="FVu-rg-AKS" secondAttribute="leading" constant="10" id="3ud-9u-oj7"/>
                             <constraint firstItem="FVu-rg-AKS" firstAttribute="trailing" secondItem="Mf2-jJ-at8" secondAttribute="trailing" constant="10" id="9ul-06-PTQ"/>
@@ -111,7 +111,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FVu-rg-AKS"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Weather" id="E19-gL-JDx"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="E19-gL-JDx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ndY-H0-URi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
