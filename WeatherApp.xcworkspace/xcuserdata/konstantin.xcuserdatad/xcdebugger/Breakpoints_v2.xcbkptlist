@@ -4,19 +4,13 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeatherApp/Controllers/DetailWeather/DetailWeatherViewController.m"
-            timestampString = "530299892.570913"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "-populateViews"
-            landmarkType = "7">
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -25,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeatherApp/Controllers/SearchCity/SearchViewController.m"
-            timestampString = "530299892.576639"
+            filePath = "WeatherApp/Controllers/DetailWeather/DetailWeatherViewController.m"
+            timestampString = "530308901.675148"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-convertFromResponse:"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "-populateViews"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

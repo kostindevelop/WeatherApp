@@ -7,15 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WeatherObject.h"
 
 @interface WeatherModel : NSObject
 
 @property(nonatomic, strong) NSString *cityName;
 @property(nonatomic, strong) NSString *countryName;
-@property(nonatomic, strong) NSString *firstDateWeather;
-@property(nonatomic, strong) NSString *firstTempDay;
-@property(nonatomic, strong) NSString *firstTempNight;
-@property(nonatomic, strong) NSString *imageId;
+@property(nonatomic, strong) NSArray <WeatherObject *> *list;
 
 
 @end

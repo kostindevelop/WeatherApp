@@ -61,13 +61,28 @@
     NSString *cityNameResponse = [cityResponse valueForKey:@"name"];
     NSString *countryNameResponse = [cityResponse valueForKey:@"country"];
     NSArray *dateArrayResponse = [weatherResponse valueForKey:@"list"];
-    NSArray *firstDdata = [dateArrayResponse valueForKeyPath:@"dt_txt"];
-    NSString *imageUrl = [[[[dateArrayResponse valueForKey:@"weather"] objectAtIndex:0] valueForKey:@"icon"] firstObject];
+    NSString *firstDateData = [[dateArrayResponse valueForKeyPath:@"dt_txt"] firstObject];
+    NSString *firstTimeData = [[firstDateData componentsSeparatedByString:@" "] lastObject];
     
     WeatherModel *weatherModel = [WeatherModel new];
     weatherModel.cityName = cityNameResponse;
     weatherModel.countryName = countryNameResponse;
-    weatherModel.imageId = imageUrl;
+    
+    NSMutableArray *dateArray = [NSMutableArray new];
+    for (NSDictionary *object in dateArrayResponse) {
+        NSString *firstDateString = [object valueForKey:@"dt_txt"];
+        if ([firstDateString containsString:firstTimeData]) {
+            WeatherObject *weatherObject = [WeatherObject new];
+            NSNumber *tempMin = [[object valueForKey:@"main"] valueForKey:@"temp_min"];
+            NSNumber *tempMax = [[object valueForKey:@"main"] valueForKey:@"temp_max"];
+            NSString *imageUrl = [[[[dateArrayResponse valueForKey:@"weather"] objectAtIndex:0] valueForKey:@"icon"] firstObject];
+            weatherObject.tempMin = tempMin;
+            weatherObject.tempMax = tempMax;
+            weatherObject.weatherIcon = imageUrl;
+            [dateArray addObject:weatherObject];
+        }
+    }
+    weatherModel.list = dateArray;
     
     [self presentDetailControllerWithModel:weatherModel animated:YES];
 }
