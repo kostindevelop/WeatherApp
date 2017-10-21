@@ -11,9 +11,10 @@
 
 @implementation UIViewController (Routes)
 
-- (void)presentDetailControllerAnimated:(BOOL)animated {
+- (void)presentDetailControllerWithModel:(WeatherModel *)model animated:(BOOL)animated {
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     DetailWeatherViewController *detailController = [main instantiateViewControllerWithIdentifier:@"detailControllerIdentifier"];
+    detailController.weatherModel = model;
     [self presentViewController:detailController animated:animated completion:nil];
 }
 

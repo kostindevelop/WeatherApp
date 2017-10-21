@@ -9,6 +9,7 @@
 #import "SearchViewController.h"
 #import "UIViewController+Routes.h"
 #import "APIClient.h"
+#import "WeatherModel.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 
 @interface SearchViewController () <UISearchBarDelegate, APIClientDelegate>
@@ -22,12 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupViews];
-    
-    
-}
-
-- (IBAction)showDetailController:(UIButton *)sender {
-    [self presentDetailControllerAnimated:YES];
 }
 
 - (void)setupViews{
@@ -56,8 +51,25 @@
     if (error) {
         // TODO:
     } else {
-        // TODO:
+        [self convertFromResponse:result];
     }
+}
+
+- (void)convertFromResponse:(id)response {
+    NSDictionary *weatherResponse = (NSDictionary *)response;// приведение типов
+    NSDictionary *cityResponse = [weatherResponse valueForKey:@"city"];
+    NSString *cityNameResponse = [cityResponse valueForKey:@"name"];
+    NSString *countryNameResponse = [cityResponse valueForKey:@"country"];
+    NSArray *dateArrayResponse = [weatherResponse valueForKey:@"list"];
+    NSArray *firstDdata = [dateArrayResponse valueForKeyPath:@"dt_txt"];
+    NSString *imageUrl = [[[[dateArrayResponse valueForKey:@"weather"] objectAtIndex:0] valueForKey:@"icon"] firstObject];
+    
+    WeatherModel *weatherModel = [WeatherModel new];
+    weatherModel.cityName = cityNameResponse;
+    weatherModel.countryName = countryNameResponse;
+    weatherModel.imageId = imageUrl;
+    
+    [self presentDetailControllerWithModel:weatherModel animated:YES];
 }
 
 @end

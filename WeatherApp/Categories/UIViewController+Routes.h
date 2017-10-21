@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class WeatherModel;
+
 @interface UIViewController (Routes)
 
-- (void)presentDetailControllerAnimated:(BOOL)animated;
+- (void)presentDetailControllerWithModel:(WeatherModel *)model animated:(BOOL)animated;
 
 @end

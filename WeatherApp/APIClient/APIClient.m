@@ -24,7 +24,6 @@ static NSString *openWeatherMapAppId = @"d2a6b21c943e38d9e44edcc03c9912ad";
         [self.delegate didRecieveResponseWithResult:responseObject error:error];
     }];
     [dataTask resume];
-    
 }
 
 @end
