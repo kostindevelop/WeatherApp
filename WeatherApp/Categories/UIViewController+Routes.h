@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class WeatherModel;
+@class ConvertModel;
 
 @interface UIViewController (Routes)
 

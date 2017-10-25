@@ -26,15 +26,6 @@
 }
 
 - (void)setupViews{
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.view.bounds;
-    gradient.colors = @[(id)[UIColor whiteColor].CGColor, (id)[UIColor blueColor].CGColor];
-    gradient.locations = @[[NSNumber numberWithInt:0.0], [NSNumber numberWithInt:1.0]];
-    [self.view.layer insertSublayer:gradient atIndex:0];
-    
-    self.searchBar.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.searchBar.layer.borderWidth = 3;
-    self.searchBar.layer.cornerRadius = 20;
     self.searchBar.delegate = self;
 }
 
@@ -52,6 +43,8 @@
         // TODO:
     } else {
         [self convertFromResponse:result];
+//        ConvertModel *convertModel = [ConvertModel new];
+//        [convertModel convertResponse:result];
     }
 }
 
@@ -63,19 +56,21 @@
     NSArray *dateArrayResponse = [weatherResponse valueForKey:@"list"];
     NSString *firstDateData = [[dateArrayResponse valueForKeyPath:@"dt_txt"] firstObject];
     NSString *firstTimeData = [[firstDateData componentsSeparatedByString:@" "] lastObject];
-    
+
     WeatherModel *weatherModel = [WeatherModel new];
     weatherModel.cityName = cityNameResponse;
     weatherModel.countryName = countryNameResponse;
-    
+
     NSMutableArray *dateArray = [NSMutableArray new];
     for (NSDictionary *object in dateArrayResponse) {
         NSString *firstDateString = [object valueForKey:@"dt_txt"];
         if ([firstDateString containsString:firstTimeData]) {
             WeatherObject *weatherObject = [WeatherObject new];
+            NSString *date = [object valueForKey:@"dt_txt"];
             NSNumber *tempMin = [[object valueForKey:@"main"] valueForKey:@"temp_min"];
             NSNumber *tempMax = [[object valueForKey:@"main"] valueForKey:@"temp_max"];
             NSString *imageUrl = [[[[dateArrayResponse valueForKey:@"weather"] objectAtIndex:0] valueForKey:@"icon"] firstObject];
+            weatherObject.currentDate = date;
             weatherObject.tempMin = tempMin;
             weatherObject.tempMax = tempMax;
             weatherObject.weatherIcon = imageUrl;
@@ -83,7 +78,7 @@
         }
     }
     weatherModel.list = dateArray;
-    
+
     [self presentDetailControllerWithModel:weatherModel animated:YES];
 }
 

@@ -10,6 +10,7 @@
 
 @interface WeatherObject : NSObject
 
+@property(nonatomic, strong) NSString *currentDate;
 @property(nonatomic, strong) NSNumber *tempMin;
 @property(nonatomic, strong) NSNumber *tempMax;
 @property(nonatomic, strong) NSString *weatherIcon;
