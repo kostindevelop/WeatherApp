@@ -8,6 +8,7 @@
 
 #import "DetailWeatherViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "DatabaseClient.h"
 
 @interface DetailWeatherViewController ()
 
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *oneTempMax;
 @property (weak, nonatomic) IBOutlet UILabel *oneTempMin;
 @property (weak, nonatomic) IBOutlet UIImageView *oneWeatherImage;
+@property (weak, nonatomic) IBOutlet UIButton *addToFavouritesButton;
 
 @end
 
@@ -40,7 +42,8 @@
     NSString *oneTempMin = [NSString stringWithFormat:@"%.2f", [firstObject.tempMin floatValue]];
     self.oneTempMin.text = oneTempMin;
     self.oneDateWeather.text = [self dateFormater:firstObject.currentDate];
-
+    
+    [self updateFavouriteButton];
 }
 
 - (NSString *)dateFormater:(NSString *)date {
@@ -49,6 +52,15 @@
     NSDate *newDate = [dateFormatterStr dateFromString:date];
     [dateFormatterStr setDateFormat:@"dd MMMM"];
     return [dateFormatterStr stringFromDate:newDate];
+}
+
+- (IBAction)addToFavouritesTapped:(UIButton *)sender {    [DatabaseClient saveObjectWithCityName:self.cityNameLabel.text];
+    [self updateFavouriteButton];
+}
+
+- (void)updateFavouriteButton {
+    NSString *favouriteButtonTitle = [DatabaseClient containsCityWithName:self.cityNameLabel.text] ? @"-" : @"+";
+    [self.addToFavouritesButton setTitle:favouriteButtonTitle forState:UIControlStateNormal];
 }
 
 @end

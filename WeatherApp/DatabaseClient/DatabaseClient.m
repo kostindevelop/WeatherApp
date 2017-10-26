@@ -7,11 +7,31 @@
 //
 
 #import "DatabaseClient.h"
+#import <MagicalRecord/MagicalRecord.h>
+#import "City+CoreDataClass.h"
 
 @implementation DatabaseClient
 
-- (void)saveObjectWithData:(NSDictionary *)data {
-    
++ (void)saveObjectWithCityName:(NSString *)cityName {
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+        City *city = [City MR_findFirstByAttribute:@"name" withValue:cityName inContext:localContext];
+        if (city) {
+            [city MR_deleteEntityInContext:localContext];
+        } else {
+            city = [City MR_createEntityInContext:localContext];
+            city.name = cityName;
+        }
+    }];
+}
+
++ (BOOL)containsCityWithName:(NSString *)cityName {
+    City *city = [City MR_findFirstByAttribute:@"name" withValue:cityName];
+    return city != nil;
+}
+
++ (NSArray *)getFavouritesCityNames {
+    NSArray *cities = [City MR_findAll];
+    return [cities valueForKeyPath:@"name"];
 }
 
 @end

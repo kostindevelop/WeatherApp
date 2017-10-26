@@ -10,6 +10,8 @@
 
 @interface DatabaseClient : NSObject
 
-- (void)saveObjectWithData:(NSDictionary *)data;
++ (void)saveObjectWithCityName:(NSString *)cityName;
++ (BOOL)containsCityWithName:(NSString *)cityName;
++ (NSArray *)getFavouritesCityNames;
 
 @end

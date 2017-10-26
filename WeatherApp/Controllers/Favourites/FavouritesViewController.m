@@ -7,6 +7,7 @@
 //
 
 #import "FavouritesViewController.h"
+#import "DatabaseClient.h"
 
 @interface FavouritesViewController ()
 
@@ -16,6 +17,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self getCities];
+}
+
+- (void)getCities {
+    NSArray *cityNames = [DatabaseClient getFavouritesCityNames];
 }
 
 @end

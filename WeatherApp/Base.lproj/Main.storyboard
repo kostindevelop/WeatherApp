@@ -289,6 +289,9 @@
                                 <state key="normal" title="favorites">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="addToFavouritesTapped:" destination="647-pY-JOT" eventType="touchUpInside" id="7gE-4G-awQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -310,6 +313,7 @@
                         <viewLayoutGuide key="safeArea" id="7iQ-fb-QGQ"/>
                     </view>
                     <connections>
+                        <outlet property="addToFavouritesButton" destination="aoP-uE-Ou6" id="2tg-1i-TeA"/>
                         <outlet property="cityNameLabel" destination="ZoP-Lb-qI7" id="7cm-82-XyT"/>
                         <outlet property="oneDateWeather" destination="Dc1-we-GbS" id="Pt3-65-4FO"/>
                         <outlet property="oneTempMax" destination="zvn-gW-gKx" id="f5E-Jt-HRa"/>
