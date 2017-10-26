@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "WeatherObject.h"
-#import "ConvertModel.h"
 
 @interface WeatherModel : NSObject
 
@@ -16,5 +15,6 @@
 @property(nonatomic, strong) NSString *countryName;
 @property(nonatomic, strong) NSArray <WeatherObject *> *list;
 
+- (instancetype)initWithData:(id)data;
 
 @end

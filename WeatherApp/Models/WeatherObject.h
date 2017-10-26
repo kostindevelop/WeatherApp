@@ -15,4 +15,6 @@
 @property(nonatomic, strong) NSNumber *tempMax;
 @property(nonatomic, strong) NSString *weatherIcon;
 
+- (instancetype) initWithData:(NSDictionary *)data;
+
 @end
