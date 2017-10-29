@@ -46,5 +46,4 @@
         [self presentDetailControllerWithModel:weatherModel animated:YES];
     }
 }
-
 @end

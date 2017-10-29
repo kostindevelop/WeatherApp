@@ -9,6 +9,7 @@
 #import "DetailWeatherViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "DatabaseClient.h"
+#import "FavouritesViewController.h"
 
 @interface DetailWeatherViewController ()
 
@@ -54,12 +55,13 @@
     return [dateFormatterStr stringFromDate:newDate];
 }
 
-- (IBAction)addToFavouritesTapped:(UIButton *)sender {    [DatabaseClient saveObjectWithCityName:self.cityNameLabel.text];
+- (IBAction)addToFavouritesTapped:(UIButton *)sender {
+    [DatabaseClient saveObjectWithCityName:self.weatherModel.cityName];
     [self updateFavouriteButton];
 }
 
 - (void)updateFavouriteButton {
-    NSString *favouriteButtonTitle = [DatabaseClient containsCityWithName:self.cityNameLabel.text] ? @"-" : @"+";
+    NSString *favouriteButtonTitle = [DatabaseClient containsCityWithName:self.weatherModel.cityName] ? @"-" : @"+";
     [self.addToFavouritesButton setTitle:favouriteButtonTitle forState:UIControlStateNormal];
 }
 
