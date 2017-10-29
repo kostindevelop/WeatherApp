@@ -7,17 +7,13 @@
 //
 
 #import "DetailWeatherViewController.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 #import "DatabaseClient.h"
 #import "FavouritesViewController.h"
+#import "DetailWeatherTableViewCell.h"
 
-@interface DetailWeatherViewController ()
+@interface DetailWeatherViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *cityNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *oneDateWeather;
-@property (weak, nonatomic) IBOutlet UILabel *oneTempMax;
-@property (weak, nonatomic) IBOutlet UILabel *oneTempMin;
-@property (weak, nonatomic) IBOutlet UIImageView *oneWeatherImage;
 @property (weak, nonatomic) IBOutlet UIButton *addToFavouritesButton;
 
 @end
@@ -28,31 +24,30 @@
     [super viewDidLoad];
     [self populateViews];
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.weatherModel.list count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *identifier = NSStringFromClass([DetailWeatherTableViewCell class]);
+    DetailWeatherTableViewCell *cell = (DetailWeatherTableViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    [cell configureWithWeatherObject:[self.weatherModel.list objectAtIndex:indexPath.row]];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
 - (IBAction)hideController:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)populateViews {
     NSString *cityName = [NSString stringWithFormat:@"%@, %@", self.weatherModel.cityName, self.weatherModel.countryName];
     self.cityNameLabel.text = cityName;
-    WeatherObject *firstObject = self.weatherModel.list.firstObject;
-    NSString *imageUrlString = [NSString stringWithFormat:@"http://openweathermap.org/img/w/%@.png", firstObject.weatherIcon];
-    [self.oneWeatherImage sd_setImageWithURL:[NSURL URLWithString:imageUrlString]
-                 placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-    NSString *oneTempMax = [NSString stringWithFormat:@"%.2f", [firstObject.tempMax floatValue]];
-    self.oneTempMax.text = oneTempMax;
-    NSString *oneTempMin = [NSString stringWithFormat:@"%.2f", [firstObject.tempMin floatValue]];
-    self.oneTempMin.text = oneTempMin;
-    self.oneDateWeather.text = [self dateFormater:firstObject.currentDate];
-    
     [self updateFavouriteButton];
-}
-
-- (NSString *)dateFormater:(NSString *)date {
-    NSDateFormatter *dateFormatterStr = [NSDateFormatter new];
-    [dateFormatterStr setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *newDate = [dateFormatterStr dateFromString:date];
-    [dateFormatterStr setDateFormat:@"dd MMMM"];
-    return [dateFormatterStr stringFromDate:newDate];
 }
 
 - (IBAction)addToFavouritesTapped:(UIButton *)sender {
