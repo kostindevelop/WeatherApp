@@ -11,7 +11,11 @@
 #import "APIClient.h"
 #import "WeatherModel.h"
 #import "UIViewController+Routes.h"
+#import "City+CoreDataClass.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <MagicalRecord/MagicalRecord.h>
+#import <SCLAlertView-Objective-C/SCLAlertView.h>
+
 
 @interface FavouritesViewController () <UITableViewDelegate, UITableViewDataSource, APIClientDelegate>
 
@@ -57,11 +61,23 @@
 - (void)didRecieveResponseWithResult:(id)result error:(NSError *)error {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     if (error) {
-        // TODO:
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert showSuccess:@"Op's" subTitle:@"Something went wrong" closeButtonTitle:@"Ok" duration:0.0f];
     } else {
         WeatherModel *weatherModel = [[WeatherModel alloc] initWithData:result];
         [self presentDetailControllerWithModel:weatherModel animated:YES];
     }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete){
+        City *city = [self.cityNames objectAtIndex:indexPath.row];
+        [city MR_deleteEntity];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+}
 }
 
 @end

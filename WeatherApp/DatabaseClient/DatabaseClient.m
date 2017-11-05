@@ -34,4 +34,8 @@
     return [cities valueForKeyPath:@"name"];
 }
 
+//+ (void)deletObjectWithDataBase:(NSInteger)index {
+//       
+//}
+
 @end

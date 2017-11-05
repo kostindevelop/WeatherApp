@@ -11,6 +11,7 @@
 #import "APIClient.h"
 #import "WeatherModel.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <SCLAlertView-Objective-C/SCLAlertView.h>
 
 @interface SearchViewController () <UISearchBarDelegate, APIClientDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -40,7 +41,8 @@
 - (void)didRecieveResponseWithResult:(id)result error:(NSError *)error {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     if (error) {
-        // TODO:
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert showError:@"Op's" subTitle:@"Something went wrong" closeButtonTitle:@"Ok" duration:0.0f];
     } else {
         WeatherModel *weatherModel = [[WeatherModel alloc] initWithData:result];
         [self presentDetailControllerWithModel:weatherModel animated:YES];

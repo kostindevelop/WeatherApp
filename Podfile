@@ -10,5 +10,6 @@ target 'WeatherApp' do
   pod 'MagicalRecord', '~> 2.3'
   pod 'SDWebImage', '~> 4.1'
   pod 'MBProgressHUD', '~> 1.0'
+  pod 'SCLAlertView-Objective-C', '~> 1.1'
   
 end
