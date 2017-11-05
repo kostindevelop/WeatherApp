@@ -28,8 +28,8 @@
 
 - (void)configureWithWeatherObject:(WeatherObject *)weatherObject {
     self.dateLabel.text = [self dateFormater:weatherObject.currentDate];
-    self.tempMaxLabel.text = [NSString stringWithFormat:@"%.2f", [weatherObject.tempMax floatValue]];
-    self.tempMinLabel.text = [NSString stringWithFormat:@"%.2f", [weatherObject.tempMin floatValue]];
+    self.tempMaxLabel.text = [NSString stringWithFormat:@"%.f", [weatherObject.tempMax floatValue]];
+    self.tempMinLabel.text = [NSString stringWithFormat:@"%.f", [weatherObject.tempMin floatValue]];
     NSString *imageUrlString = [NSString stringWithFormat:@"http://openweathermap.org/img/w/%@.png", weatherObject.weatherIcon];
         [self.weatherImage sd_setImageWithURL:[NSURL URLWithString:imageUrlString]
                      placeholderImage:[UIImage imageNamed:@"placeholder.png"]];

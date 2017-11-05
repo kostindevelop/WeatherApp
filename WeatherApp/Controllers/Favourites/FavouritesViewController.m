@@ -9,20 +9,25 @@
 #import "FavouritesViewController.h"
 #import "DatabaseClient.h"
 #import "APIClient.h"
+#import "WeatherModel.h"
+#import "UIViewController+Routes.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
-@interface FavouritesViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface FavouritesViewController () <UITableViewDelegate, UITableViewDataSource, APIClientDelegate>
 
 @property(nonatomic, strong) NSArray *cityNames;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
 @implementation FavouritesViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     [self getCities];
+    [self.tableView reloadData];
 }
 
 - (void)getCities {
@@ -34,18 +39,29 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString * identifire = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifire];
+    NSString * identifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     cell.textLabel.text = [self.cityNames objectAtIndex:indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     APIClient *apiClient = [APIClient new];
+    apiClient.delegate = self;
     NSString *findCity = [self.cityNames objectAtIndex:indexPath.row];
-    NSLog(@"tapCity:%@", findCity);
     [apiClient searchWithCityName:findCity];
+}
+
+- (void)didRecieveResponseWithResult:(id)result error:(NSError *)error {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    if (error) {
+        // TODO:
+    } else {
+        WeatherModel *weatherModel = [[WeatherModel alloc] initWithData:result];
+        [self presentDetailControllerWithModel:weatherModel animated:YES];
+    }
 }
 
 @end
