@@ -72,11 +72,10 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete){
-        City *city = [self.cityNames objectAtIndex:indexPath.row];
-        [city MR_deleteEntity];
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        [self.tableView beginUpdates];
+        [DatabaseClient deleteObjectWithCityName:[self.cityNames objectAtIndex:indexPath.row]];
+        [self.tableView endUpdates];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    
 }
 }
 

@@ -34,8 +34,9 @@
     return [cities valueForKeyPath:@"name"];
 }
 
-//+ (void)deletObjectWithDataBase:(NSInteger)index {
-//       
-//}
-
++ (void)deleteObjectWithCityName:(NSString *)cityName {
+    City *city = [City MR_findFirstByAttribute:@"name" withValue:cityName];
+    [city MR_deleteEntity];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+}
 @end

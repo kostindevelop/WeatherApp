@@ -11,6 +11,7 @@
 @interface DatabaseClient : NSObject
 
 + (void)saveObjectWithCityName:(NSString *)cityName;
++ (void)deleteObjectWithCityName:(NSString *)cityName;
 + (BOOL)containsCityWithName:(NSString *)cityName;
 + (NSArray *)getFavouritesCityNames;
 

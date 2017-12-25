@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeatherApp/Controllers/Favourites/FavouritesViewController.m"
-            timestampString = "531616167.139889"
+            filePath = "WeatherApp/Models/WeatherModel.m"
+            timestampString = "531690152.424573"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-didRecieveResponseWithResult:error:"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "-updateWithData:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
