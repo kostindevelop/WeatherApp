@@ -8,8 +8,14 @@
 
 #import "SearchViewController.h"
 #import "UIViewController+Routes.h"
+#import "APIClient.h"
+#import "WeatherModel.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+#import <SCLAlertView-Objective-C/SCLAlertView.h>
 
-@interface SearchViewController ()
+@interface SearchViewController () <UISearchBarDelegate, APIClientDelegate>
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) APIClient *apiClient;
 
 @end
 
@@ -17,9 +23,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-- (IBAction)showDetailController:(UIButton *)sender {
-    [self presentDetailControllerAnimated:YES];
+    [self setupViews];
 }
 
+- (void)setupViews{
+    self.searchBar.delegate = self;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.apiClient = [APIClient new];
+    self.apiClient.delegate = self;
+    [self.apiClient searchWithCityName:searchBar.text];
+    [self.searchBar resignFirstResponder];
+}
+
+- (void)didRecieveResponseWithResult:(id)result error:(NSError *)error {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    if (error) {
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert showError:@"Op's" subTitle:@"Something went wrong" closeButtonTitle:@"Ok" duration:0.0f];
+    } else {
+        WeatherModel *weatherModel = [[WeatherModel alloc] initWithData:result];
+        [self presentDetailControllerWithModel:weatherModel animated:YES];
+    }
+}
 @end
